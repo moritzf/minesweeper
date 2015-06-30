@@ -1,2 +1,2 @@
 # minesweeper
-Simple Minesweeper Swing game.
+Simple Minesweeper game implemented using Java Swing.
