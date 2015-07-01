@@ -4,15 +4,17 @@ public class MineSweeperTile {
 	private boolean hasBomb;
 	private boolean isCovered;
 	private boolean hasFlag;
+	private boolean hasExploded;
 
 	/**
 	 * Since the tile starts out covered and without a flag, only hasBomb is
-	 * paramterized.
+	 * parameterized.
 	 */
 	public MineSweeperTile(boolean hasBomb) {
 		this.hasBomb = hasBomb;
 		isCovered = true;
 		hasFlag = false;
+		hasExploded = false;
 	}
 
 	public boolean isCovered() {
@@ -33,6 +35,14 @@ public class MineSweeperTile {
 
 	public void setCovered(boolean isCovered) {
 		this.isCovered = isCovered;
+	}
+	
+	public void setHasExploded(boolean exploded) {
+		hasExploded = exploded;
+	}
+	
+	public boolean hasExploded() {
+		return hasExploded;
 	}
 
 }
