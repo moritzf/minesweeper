@@ -202,18 +202,20 @@ MineSweeperModelInterface {
 
 	@Override
 	public void uncoverTiles(int x, int y) {
-		if (tiles[x][y].hasBomb()) {
-			tiles[x][y].setCovered(false);
-			decrementCoveredByOne();
-			tiles[x][y].setHasExploded(true);
-			uncoverBombs();
-			setGameProgress(true, false);
-			boardObserver.update();
-			return;
+		if (!isGameOver()) {
+			if (tiles[x][y].hasBomb()) {
+				tiles[x][y].setCovered(false);
+				decrementCoveredByOne();
+				tiles[x][y].setHasExploded(true);
+				uncoverBombs();
+				setGameProgress(true, false);
+				boardObserver.update();
+				return;
+			}
+			HashSet<Integer> visitedX = new HashSet<>();
+			HashSet<Integer> visitedY = new HashSet<>();
+			uncoverCurrentAndAdjacentTilesRecursively(x, y, visitedX, visitedY);
 		}
-		HashSet<Integer> visitedX = new HashSet<>();
-		HashSet<Integer> visitedY = new HashSet<>();
-		uncoverCurrentAndAdjacentTilesRecursively(x, y, visitedX, visitedY);
 	}
 
 	private void decrementCoveredByOne() {
@@ -225,20 +227,22 @@ MineSweeperModelInterface {
 
 	@Override
 	public void markTile(int x, int y) {
-		if (tiles[x][y].hasFlag()) {
-			tiles[x][y].setFlag(false);
-			tiles[x][y].setWronglyMarked(false);
-			incrementFlagCountByOne();
-		} else {
-			if (getRemainingFlags() > 0) {
-				tiles[x][y].setFlag(true);
-				if (!tiles[x][y].hasBomb()) {
-					tiles[x][y].setWronglyMarked(true);
+		if (!isGameOver()) {
+			if (tiles[x][y].hasFlag()) {
+				tiles[x][y].setFlag(false);
+				tiles[x][y].setWronglyMarked(false);
+				incrementFlagCountByOne();
+			} else {
+				if (getRemainingFlags() > 0) {
+					tiles[x][y].setFlag(true);
+					if (!tiles[x][y].hasBomb()) {
+						tiles[x][y].setWronglyMarked(true);
+					}
+					decrementFlagCountByOne();
 				}
-				decrementFlagCountByOne();
 			}
+			boardObserver.update();
 		}
-		boardObserver.update();
 	}
 
 	private void incrementFlagCountByOne() {
