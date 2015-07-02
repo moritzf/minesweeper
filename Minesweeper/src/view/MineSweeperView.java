@@ -32,7 +32,7 @@ import controller.TileMouseListener;
  * Contains the view associated with the Minesweeper game.
  */
 public class MineSweeperView extends JFrame implements ViewConstants,
-		GameConstants, BoardObserver, FlagsObserver, GameProgressObserver {
+GameConstants, BoardObserver, FlagsObserver, GameProgressObserver {
 
 	private JLabel mineCounter = new JLabel("" + NUM_BOMBS);
 	private JLabel statusMessage = new JLabel("", SwingConstants.CENTER);
@@ -62,7 +62,7 @@ public class MineSweeperView extends JFrame implements ViewConstants,
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Minesweeper");
 		setContentPane(mainPanel);
-		setResizable(true);
+		setResizable(false);
 		initActionBar();
 		initGameContent();
 		pack();
@@ -151,9 +151,9 @@ public class MineSweeperView extends JFrame implements ViewConstants,
 	 */
 	private void setViewTileState(int x, int y, MineSweeperTile mineSweeperTile) {
 		if (mineSweeperTile.hasBomb() && !mineSweeperTile.isCovered()) {
+			tiles[x][y].setText("");
+			tiles[x][y].setBackground(Color.WHITE);
 			if (mineSweeperTile.hasExploded()) {
-				tiles[x][y].setText("");
-				;
 				tiles[x][y].setIcon(new ImageIcon(EXPLODED_BOMB_PATH));
 			} else {
 				tiles[x][y].setIcon(new ImageIcon(BOMB_PATH));
