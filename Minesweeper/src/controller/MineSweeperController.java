@@ -1,13 +1,13 @@
 package controller;
 
-import model.MineSweeperBoardModel;
+import model.MineSweeperModel;
 import view.MineSweeperView;
 
 public class MineSweeperController {
 	
-	MineSweeperBoardModel model;
+	MineSweeperModel model;
 	MineSweeperView view;
-	public MineSweeperController(MineSweeperBoardModel model) {
+	public MineSweeperController(MineSweeperModel model) {
 		this.model = model;
 		view = new MineSweeperView(this, model);
 	}

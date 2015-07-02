@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import model.MineSweeperBoardModel;
+import model.MineSweeperModel;
 import model.MineSweeperTile;
 import model.ModelObserver;
 import util.GameConstants;
@@ -34,9 +34,9 @@ public class MineSweeperView extends JFrame implements ViewConstants, GameConsta
 	private JButton[][] tiles = new JButton[NUM_TILES_PER_SIDE][NUM_TILES_PER_SIDE];
 	
 	MineSweeperController controller;
-	MineSweeperBoardModel model;
+	MineSweeperModel model;
 
-	public MineSweeperView(MineSweeperController controller, MineSweeperBoardModel model) {
+	public MineSweeperView(MineSweeperController controller, MineSweeperModel model) {
 		this.controller = controller;
 		this.model = model;
 		createView();

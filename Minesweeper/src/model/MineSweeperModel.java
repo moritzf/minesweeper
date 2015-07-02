@@ -4,14 +4,14 @@ import java.util.Random;
 
 import util.GameConstants;
 
-public class MineSweeperBoardModel implements GameConstants {
+public class MineSweeperModel implements GameConstants {
 	
 	MineSweeperTile[][] tiles = new MineSweeperTile[NUM_TILES_PER_SIDE][NUM_TILES_PER_SIDE];
 	String status;
 	int numFlagsRemaining;
 	ModelObserver observer;
 	
-	public MineSweeperBoardModel() {
+	public MineSweeperModel() {
 		initGame();
 	}
 	
