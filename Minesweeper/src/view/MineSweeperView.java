@@ -32,7 +32,7 @@ import controller.TileMouseListener;
  * Contains the view associated with the Minesweeper game.
  */
 public class MineSweeperView extends JFrame implements ViewConstants,
-GameConstants, BoardObserver, FlagsObserver, GameProgressObserver {
+		GameConstants, BoardObserver, FlagsObserver, GameProgressObserver {
 
 	private JLabel mineCounter = new JLabel("" + NUM_BOMBS);
 	private JLabel statusMessage = new JLabel("", SwingConstants.CENTER);
@@ -118,7 +118,6 @@ GameConstants, BoardObserver, FlagsObserver, GameProgressObserver {
 
 					@Override
 					public void mousePressed(MouseEvent e) {
-						model.initGame();
 					}
 
 					@Override
@@ -159,8 +158,6 @@ GameConstants, BoardObserver, FlagsObserver, GameProgressObserver {
 			} else {
 				tiles[x][y].setIcon(new ImageIcon(BOMB_PATH));
 			}
-		} else if (mineSweeperTile.isCovered()) {
-			tiles[x][y].setText("");
 		} else if (mineSweeperTile.hasFlag()) {
 			if (!mineSweeperTile.isCovered()) {
 				tiles[x][y].setIcon(new ImageIcon(WRONGLY_FLAGGED_PATH));
@@ -168,11 +165,15 @@ GameConstants, BoardObserver, FlagsObserver, GameProgressObserver {
 			tiles[x][y].setIcon(new ImageIcon(FLAG_PATH));
 		} else if (!mineSweeperTile.isCovered()) {
 			int numAdjacentBombs = model.getNumNeighboringBombs(x, y);
+			tiles[x][y].setBackground(Color.WHITE);
 			if (numAdjacentBombs == 0) {
 				tiles[x][y].setText("");
 			} else {
 				tiles[x][y].setText("" + numAdjacentBombs);
 			}
+		} else if (mineSweeperTile.isCovered()) {
+			tiles[x][y].setIcon(null);
+			tiles[x][y].setText("");
 		}
 	}
 

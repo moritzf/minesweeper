@@ -18,6 +18,7 @@ public class MineSweeperController {
 		 */
 		view.createView();
 
+		model.initGame();
 	}
 
 }

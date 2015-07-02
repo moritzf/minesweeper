@@ -6,9 +6,9 @@ import java.util.Random;
 import util.GameConstants;
 
 public class MineSweeperModel implements GameConstants,
-		MineSweeperModelInterface {
+MineSweeperModelInterface {
 
-	private MineSweeperTile[][] tiles = new MineSweeperTile[NUM_TILES_PER_SIDE][NUM_TILES_PER_SIDE];
+	private MineSweeperTile[][] tiles;
 
 	private boolean gameOver;
 	private boolean hasWon;
@@ -25,6 +25,7 @@ public class MineSweeperModel implements GameConstants,
 	@Override
 	public void initGame() {
 		boolean[][] bombDistribution = generateBombDistribution();
+		tiles = new MineSweeperTile[NUM_TILES_PER_SIDE][NUM_TILES_PER_SIDE];
 		int numTiles = NUM_TILES_PER_SIDE * NUM_TILES_PER_SIDE;
 		for (int i = 0; i < NUM_TILES_PER_SIDE; i++) {
 			for (int j = 0; j < NUM_TILES_PER_SIDE; j++) {
@@ -36,10 +37,12 @@ public class MineSweeperModel implements GameConstants,
 		numCovered = numTiles;
 		gameOver = false;
 		hasWon = false;
+		message = "";
 
 		flagsObserver.update(numFlagsRemaining);
 		boardObserver.update();
 		gameProgressObserver.update(message);
+
 	}
 
 	private boolean[][] generateBombDistribution() {
@@ -53,11 +56,14 @@ public class MineSweeperModel implements GameConstants,
 		boolean[][] bombDistribution = new boolean[NUM_TILES_PER_SIDE][NUM_TILES_PER_SIDE];
 
 		while (true) {
+			if (numBombs == NUM_BOMBS) {
+				break;
+			}
 			int i = random.nextInt(NUM_TILES_PER_SIDE);
 			int j = random.nextInt(NUM_TILES_PER_SIDE);
 
 			if (!(visitedX.contains(new Integer(i)) && visitedY
-					.contains(new Integer(i))) && numBombs < NUM_BOMBS) {
+					.contains(new Integer(i)))) {
 				visitedX.add(new Integer(i));
 				visitedY.add(new Integer(j));
 				bombDistribution[i][j] = true;
@@ -65,6 +71,7 @@ public class MineSweeperModel implements GameConstants,
 
 			}
 		}
+		return bombDistribution;
 	}
 
 	@Override
@@ -84,7 +91,8 @@ public class MineSweeperModel implements GameConstants,
 	 * Checks if the coordinates are within the bounds of the game board.
 	 */
 	private boolean inBounds(int x, int y) {
-		if (x < NUM_TILES_PER_SIDE && y < NUM_TILES_PER_SIDE)
+		if (!(x < 0) && x < NUM_TILES_PER_SIDE && !(y < 0)
+				&& y < NUM_TILES_PER_SIDE)
 			return true;
 		else
 			return false;
@@ -159,16 +167,15 @@ public class MineSweeperModel implements GameConstants,
 	/* Helper method used to recursively uncover tiles. A tile is uncoverable if */
 	private void uncoverCurrentAndAdjacentTilesRecursively(int x, int y,
 			HashSet<Integer> visitedX, HashSet<Integer> visitedY) {
-
 		if (tiles[x][y].hasBomb() || tiles[x][y].hasFlag()) {
 			return;
 		} else {
 			visitedX.add(new Integer(x));
 			visitedY.add(new Integer(y));
 			tiles[x][y].setCovered(false);
-			decrementFlagCountByOne();
+			decrementCoveredByOne();
 			for (int i = x - 1; i < x + 1; i++) {
-				for (int j = y - 1; j < j + 1; j++) {
+				for (int j = y - 1; j < y + 1; j++) {
 					if (inBounds(i, j)
 							&& !(visitedX.contains(new Integer(i)) && visitedY
 									.contains(new Integer(j)))) {
@@ -187,7 +194,7 @@ public class MineSweeperModel implements GameConstants,
 			for (int j = 0; j < NUM_TILES_PER_SIDE; j++) {
 				if (tiles[i][j].hasBomb()) {
 					tiles[i][j].setCovered(false);
-					decrementFlagCountByOne();
+					decrementCoveredByOne();
 				}
 			}
 		}
@@ -218,12 +225,25 @@ public class MineSweeperModel implements GameConstants,
 
 	@Override
 	public void markTile(int x, int y) {
-		tiles[x][y].setFlag(true);
-		if (!tiles[x][y].hasBomb()) {
-			tiles[x][y].setWronglyMarked(true);
+		if (tiles[x][y].hasFlag()) {
+			tiles[x][y].setFlag(false);
+			tiles[x][y].setWronglyMarked(false);
+			incrementFlagCountByOne();
+		} else {
+			if (getRemainingFlags() > 0) {
+				tiles[x][y].setFlag(true);
+				if (!tiles[x][y].hasBomb()) {
+					tiles[x][y].setWronglyMarked(true);
+				}
+				decrementFlagCountByOne();
+			}
 		}
-		decrementFlagCountByOne();
 		boardObserver.update();
+	}
+
+	private void incrementFlagCountByOne() {
+		numFlagsRemaining++;
+		flagsObserver.update(numFlagsRemaining);
 	}
 
 }
