@@ -5,6 +5,7 @@ public class MineSweeperTile {
 	private boolean isCovered;
 	private boolean hasFlag;
 	private boolean hasExploded;
+	private boolean wronglyMarked;
 
 	/**
 	 * Since the tile starts out covered and without a flag, only hasBomb is
@@ -15,6 +16,7 @@ public class MineSweeperTile {
 		isCovered = true;
 		hasFlag = false;
 		hasExploded = false;
+		wronglyMarked = false;
 	}
 
 	public boolean isCovered() {
@@ -36,13 +38,21 @@ public class MineSweeperTile {
 	public void setCovered(boolean isCovered) {
 		this.isCovered = isCovered;
 	}
-	
+
 	public void setHasExploded(boolean exploded) {
 		hasExploded = exploded;
 	}
-	
+
 	public boolean hasExploded() {
 		return hasExploded;
+	}
+
+	public boolean isWronglyMarked() {
+		return wronglyMarked;
+	}
+
+	public void setWronglyMarked(boolean wronglyMarked) {
+		this.wronglyMarked = wronglyMarked;
 	}
 
 }

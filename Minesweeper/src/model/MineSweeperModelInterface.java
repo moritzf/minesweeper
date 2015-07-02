@@ -32,13 +32,18 @@ public interface MineSweeperModelInterface {
 	 */
 	boolean isGameOver();
 
+	/**
+	 * Returns whether or not the player has won.
+	 */
+	boolean hasWon();
+
 	/* These methods allow the view to become an observer. */
 
-	void addObserver(BoardObserverInterface o);
+	void addObserver(BoardObserver o);
 
-	void addObserver(FlagsObserverInterface o);
+	void addObserver(FlagsObserver o);
 
-	void addObserver(GameProgressObserverInterface o);
+	void addObserver(GameProgressObserver o);
 
 	/* Methods for altering state */
 
@@ -49,16 +54,29 @@ public interface MineSweeperModelInterface {
 	void decrementFlagCountByOne();
 
 	/**
-	 * Sets whether or not the game is over.
+	 * Sets whether or not the game is over and whether or not the player has
+	 * won.
 	 */
-	void setGameOver(boolean gameOver);
+	void setGameProgress(boolean gameOver, boolean hasWon);
 
 	/**
 	 * Sets up the game for the first time. Only called once at the beginning.
 	 */
 	void initGame();
 
-	/** Called after a successful or unsuccessful playthrough of MineSweeper. */
+	/**
+	 * Called after the player presses the replay button.
+	 */
 	void resetGame();
+
+	/**
+	 * Uncovers the tiles in the surrounding area and the current tile.
+	 */
+	void uncoverTiles(int x, int y);
+
+	/**
+	 * Marks the specified tile.
+	 */
+	void markTile(int x, int y);
 
 }
