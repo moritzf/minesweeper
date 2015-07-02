@@ -62,7 +62,7 @@ public class MineSweeperView extends JFrame implements ViewConstants,
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Minesweeper");
 		setContentPane(mainPanel);
-		setResizable(false);
+		setResizable(true);
 		initActionBar();
 		initGameContent();
 		pack();
@@ -159,10 +159,12 @@ public class MineSweeperView extends JFrame implements ViewConstants,
 				tiles[x][y].setIcon(new ImageIcon(BOMB_PATH));
 			}
 		} else if (mineSweeperTile.hasFlag()) {
-			if (!mineSweeperTile.isCovered()) {
+			if (mineSweeperTile.isWronglyMarked()
+					&& !mineSweeperTile.isCovered()) {
 				tiles[x][y].setIcon(new ImageIcon(WRONGLY_FLAGGED_PATH));
+			} else {
+				tiles[x][y].setIcon(new ImageIcon(FLAG_PATH));
 			}
-			tiles[x][y].setIcon(new ImageIcon(FLAG_PATH));
 		} else if (!mineSweeperTile.isCovered()) {
 			int numAdjacentBombs = model.getNumNeighboringBombs(x, y);
 			tiles[x][y].setBackground(Color.WHITE);
@@ -172,6 +174,7 @@ public class MineSweeperView extends JFrame implements ViewConstants,
 				tiles[x][y].setText("" + numAdjacentBombs);
 			}
 		} else if (mineSweeperTile.isCovered()) {
+			tiles[x][y].setBackground(Color.LIGHT_GRAY);
 			tiles[x][y].setIcon(null);
 			tiles[x][y].setText("");
 		}

@@ -77,10 +77,12 @@ MineSweeperModelInterface {
 	@Override
 	public int getNumNeighboringBombs(int x, int y) {
 		int result = 0;
-		for (int i = x - 1; i < x + 1; i++) {
-			for (int j = y - 1; j < j + 1; j++) {
-				if (inBounds(i, j) && tiles[i][j].hasBomb()) {
-					result++;
+		for (int i = x - 1; i <= x + 1; i++) {
+			for (int j = y - 1; j <= y + 1; j++) {
+				if (!(i == x && j == y)) {
+					if (inBounds(i, j) && tiles[i][j].hasBomb()) {
+						result++;
+					}
 				}
 			}
 		}
@@ -91,8 +93,8 @@ MineSweeperModelInterface {
 	 * Checks if the coordinates are within the bounds of the game board.
 	 */
 	private boolean inBounds(int x, int y) {
-		if (!(x < 0) && x < NUM_TILES_PER_SIDE && !(y < 0)
-				&& y < NUM_TILES_PER_SIDE)
+		if ((!(x < 0)) && (x < NUM_TILES_PER_SIDE) && (!(y < 0))
+				&& (y < NUM_TILES_PER_SIDE))
 			return true;
 		else
 			return false;
@@ -143,7 +145,7 @@ MineSweeperModelInterface {
 
 		if (gameOver) {
 			if (hasWon) {
-				message = "Gewonnen!";
+				message = "Gewonnen :)";
 			} else {
 				message = "Verloren :(";
 			}
@@ -167,32 +169,47 @@ MineSweeperModelInterface {
 	/* Helper method used to recursively uncover tiles. A tile is uncoverable if */
 	private void uncoverCurrentAndAdjacentTilesRecursively(int x, int y,
 			HashSet<Integer> visitedX, HashSet<Integer> visitedY) {
-		if (tiles[x][y].hasBomb() || tiles[x][y].hasFlag()) {
+
+		if (!inBounds(x, y)
+				|| (tiles[x][y].hasBomb() || tiles[x][y].hasFlag() || !tiles[x][y]
+						.isCovered())) {
 			return;
-		} else {
-			visitedX.add(new Integer(x));
-			visitedY.add(new Integer(y));
-			tiles[x][y].setCovered(false);
-			decrementCoveredByOne();
-			for (int i = x - 1; i < x + 1; i++) {
-				for (int j = y - 1; j < y + 1; j++) {
-					if (inBounds(i, j)
-							&& !(visitedX.contains(new Integer(i)) && visitedY
-									.contains(new Integer(j)))) {
-						uncoverCurrentAndAdjacentTilesRecursively(i, j,
-								visitedX, visitedY);
-					}
-				}
-			}
 		}
 
+		visitedX.add(new Integer(x));
+		visitedY.add(new Integer(y));
+		tiles[x][y].setCovered(false);
+		decrementCoveredByOne();
+		if (getNumNeighboringBombs(x, y) > 0) {
+			return;
+		}
+		uncoverCurrentAndAdjacentTilesRecursively(x + 1, y, visitedX, visitedY);
+		uncoverCurrentAndAdjacentTilesRecursively(x - 1, y, visitedX, visitedY);
+		uncoverCurrentAndAdjacentTilesRecursively(x, y - 1, visitedX, visitedY);
+		uncoverCurrentAndAdjacentTilesRecursively(x, y + 1, visitedX, visitedY);
+		//
+		// for (int i = x - 1; i <= x + 1; i++) {
+		// for (int j = y - 1; j <= y + 1; j++) {
+		// if (inBounds(i, j)
+		// && !(visitedX.contains(new Integer(i)) && visitedY
+		// .contains(new Integer(j)))) {
+		// if (getNumNeighboringBombs(i, y) == 0) {
+		// uncoverCurrentAndAdjacentTilesRecursively(i, j,
+		// visitedX, visitedY);
+		// }
+		// }
+		// }
+		// }
 	}
 
-	/* Uncovers all bombs on the board */
-	private void uncoverBombs() {
+	private void uncoverBombsAndWronglyMarkedFlags() {
 		for (int i = 0; i < NUM_TILES_PER_SIDE; i++) {
 			for (int j = 0; j < NUM_TILES_PER_SIDE; j++) {
 				if (tiles[i][j].hasBomb()) {
+					tiles[i][j].setCovered(false);
+					decrementCoveredByOne();
+				}
+				if (tiles[i][j].isWronglyMarked()) {
 					tiles[i][j].setCovered(false);
 					decrementCoveredByOne();
 				}
@@ -207,7 +224,7 @@ MineSweeperModelInterface {
 				tiles[x][y].setCovered(false);
 				decrementCoveredByOne();
 				tiles[x][y].setHasExploded(true);
-				uncoverBombs();
+				uncoverBombsAndWronglyMarkedFlags();
 				setGameProgress(true, false);
 				boardObserver.update();
 				return;
@@ -215,6 +232,7 @@ MineSweeperModelInterface {
 			HashSet<Integer> visitedX = new HashSet<>();
 			HashSet<Integer> visitedY = new HashSet<>();
 			uncoverCurrentAndAdjacentTilesRecursively(x, y, visitedX, visitedY);
+			boardObserver.update();
 		}
 	}
 
@@ -233,7 +251,7 @@ MineSweeperModelInterface {
 				tiles[x][y].setWronglyMarked(false);
 				incrementFlagCountByOne();
 			} else {
-				if (getRemainingFlags() > 0) {
+				if (getRemainingFlags() > 0 && tiles[x][y].isCovered()) {
 					tiles[x][y].setFlag(true);
 					if (!tiles[x][y].hasBomb()) {
 						tiles[x][y].setWronglyMarked(true);
