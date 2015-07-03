@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.8" icons="true">  
+  <object id="1" language="java" name="view.MineSweeperView" project="Minesweeper" 
+    file="/Minesweeper/src/view/MineSweeperView.java" binary="false" label="mineSweeperView" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="267" y="0"/>    
+    <execution id="2">      
+      <position height="430" width="0" x="0" y="116"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="367" width="0" x="0" y="158"/>    
+    </execution>  
+  </object>  
+  <object id="9" language="java" name="javax.swing.JButton" project="Minesweeper" 
+    file="C:/Program Files/Java/jre1.8.0_40/lib/rt.jar" binary="true" label="tile" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="6">      
+      <position height="21" width="0" x="0" y="441"/>    
+    </execution>  
+  </object>  
+  <object id="10" language="java" name="controller.TileMouseListener" project="Minesweeper" 
+    file="/Minesweeper/src/controller/TileMouseListener.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="8">      
+      <position height="21" width="0" x="0" y="483"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="initGameContent():void">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="addMouseListener(java.awt.event.MouseListener):void">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="TileMouseListener(int,int)">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>
+</sequence-diagram>

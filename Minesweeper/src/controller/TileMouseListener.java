@@ -3,6 +3,15 @@ package controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Listener attached to every tile on the game board. A subclass is used to save
+ * the coordinates of the tile. Also, the method mouseReleased will be
+ * overridden as it would otherwise be necessary to save a reference to the
+ * model in this class.
+ * 
+ * @author Moritz
+ *
+ */
 public class TileMouseListener implements MouseListener {
 
 	int i;

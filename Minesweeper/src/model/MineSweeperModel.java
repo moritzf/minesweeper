@@ -6,7 +6,7 @@ import java.util.Random;
 import util.GameConstants;
 
 public class MineSweeperModel implements GameConstants,
-MineSweeperModelInterface {
+		MineSweeperModelInterface {
 
 	private MineSweeperTile[][] tiles;
 
@@ -45,6 +45,11 @@ MineSweeperModelInterface {
 
 	}
 
+	/**
+	 * Distributes a set number of bombs specified through the NUM_BOMBS
+	 * constant randomly on the game board. Also ensures that no bomb is placed
+	 * twice on the same tile.
+	 */
 	private boolean[][] generateBombDistribution() {
 
 		int numBombs = 0;
@@ -166,7 +171,7 @@ MineSweeperModelInterface {
 		return hasWon;
 	}
 
-	/* Helper method used to recursively uncover tiles. A tile is uncoverable if */
+	/* Helper method used to recursively uncover tiles. */
 	private void uncoverCurrentAndAdjacentTilesRecursively(int x, int y,
 			HashSet<Integer> visitedX, HashSet<Integer> visitedY) {
 
@@ -187,19 +192,6 @@ MineSweeperModelInterface {
 		uncoverCurrentAndAdjacentTilesRecursively(x - 1, y, visitedX, visitedY);
 		uncoverCurrentAndAdjacentTilesRecursively(x, y - 1, visitedX, visitedY);
 		uncoverCurrentAndAdjacentTilesRecursively(x, y + 1, visitedX, visitedY);
-		//
-		// for (int i = x - 1; i <= x + 1; i++) {
-		// for (int j = y - 1; j <= y + 1; j++) {
-		// if (inBounds(i, j)
-		// && !(visitedX.contains(new Integer(i)) && visitedY
-		// .contains(new Integer(j)))) {
-		// if (getNumNeighboringBombs(i, y) == 0) {
-		// uncoverCurrentAndAdjacentTilesRecursively(i, j,
-		// visitedX, visitedY);
-		// }
-		// }
-		// }
-		// }
 	}
 
 	private void uncoverBombsAndWronglyMarkedFlags() {
@@ -236,6 +228,10 @@ MineSweeperModelInterface {
 		}
 	}
 
+	/*
+	 * Helper method to decrement the number of covered tiles. Used to determine
+	 * whether or not the player has won.
+	 */
 	private void decrementCoveredByOne() {
 		numCovered--;
 		if (numCovered == NUM_BOMBS) {
@@ -263,6 +259,10 @@ MineSweeperModelInterface {
 		}
 	}
 
+	/*
+	 * Helper method to increment the number of flags. Used when the player
+	 * clicks on a flagged tile.
+	 */
 	private void incrementFlagCountByOne() {
 		numFlagsRemaining++;
 		flagsObserver.update(numFlagsRemaining);

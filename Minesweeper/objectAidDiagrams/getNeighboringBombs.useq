@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.8" icons="true">  
+  <object id="1" language="java" name="model.MineSweeperModel" project="Minesweeper" 
+    file="/Minesweeper/src/model/MineSweeperModel.java" binary="false" label="mineSweeperModel" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="333" y="0"/>    
+    <execution id="2">      
+      <position height="188" width="0" x="0" y="179"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="125" width="0" x="0" y="221"/>    
+    </execution>    
+    <execution id="6">      
+      <position height="21" width="0" x="0" y="273"/>    
+    </execution>  
+  </object>  
+  <object id="9" language="java" name="model.MineSweeperTile" project="Minesweeper" 
+    file="/Minesweeper/src/model/MineSweeperTile.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="8">      
+      <position height="21" width="0" x="0" y="304"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="getNumNeighboringBombs(int,int):int">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="inBounds(int,int):boolean">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="hasBomb():boolean">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>
+</sequence-diagram>
