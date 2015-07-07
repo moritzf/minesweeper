@@ -102,7 +102,9 @@ GameConstants, BoardObserver, FlagsObserver, GameProgressObserver {
 		for (int i = 0; i < NUM_TILES_PER_SIDE; i++) {
 			for (int j = 0; j < NUM_TILES_PER_SIDE; j++) {
 				JButton tile = new JButton("");
-				tile.setPreferredSize(new Dimension(50, 50));
+				tile.setPreferredSize(new Dimension(APPLICATION_WIDTH
+						/ NUM_TILES_PER_SIDE, APPLICATION_WIDTH
+						/ NUM_TILES_PER_SIDE));
 				tile.setBorder(BorderFactory.createRaisedBevelBorder());
 				tile.setBackground(Color.LIGHT_GRAY);
 				tile.addMouseListener(new TileMouseListener(i, j) {
