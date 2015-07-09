@@ -1,215 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
-  <class id="1" language="java" name="view.MineSweeperView" project="Minesweeper" 
-    file="/Minesweeper/src/view/MineSweeperView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="343" width="306" x="305" y="356"/>    
-    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="application.MineSweeperDriver" project="Minesweeper" 
+<class-diagram version="1.1.8" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" language="java" name="application.MineSweeperDriver" project="Minesweeper" 
     file="/Minesweeper/src/application/MineSweeperDriver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="140" x="41" y="356"/>    
+    <position height="99" width="140" x="1081" y="37"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="controller.TileMouseListener" project="Minesweeper" 
+  <class id="2" language="java" name="controller.TileMouseListener" project="Minesweeper" 
     file="/Minesweeper/src/controller/TileMouseListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="193" x="877" y="37"/>    
+    <position height="279" width="193" x="177" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="controller.MineSweeperController" project="Minesweeper" 
+  <class id="3" language="java" name="controller.MineSweeperController" project="Minesweeper" 
     file="/Minesweeper/src/controller/MineSweeperController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="242" x="468" y="37"/>    
+    <position height="99" width="242" x="545" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="5" language="java" name="model.BoardObserver" project="Minesweeper" 
+  <interface id="4" language="java" name="model.BoardObserver" project="Minesweeper" 
     file="/Minesweeper/src/model/BoardObserver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="111" x="1086" y="1348"/>    
+    <position height="81" width="111" x="692" y="965"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="6" language="java" name="model.FlagsObserver" project="Minesweeper" 
+  <interface id="5" language="java" name="model.FlagsObserver" project="Minesweeper" 
     file="/Minesweeper/src/model/FlagsObserver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="495" y="1403"/>    
+    <position height="81" width="107" x="545" y="965"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="7" language="java" name="model.GameProgressObserver" project="Minesweeper" 
+  <interface id="6" language="java" name="model.GameProgressObserver" project="Minesweeper" 
     file="/Minesweeper/src/model/GameProgressObserver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="163" x="41" y="1348"/>    
+    <position height="81" width="163" x="843" y="965"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="model.MineSweeperModel" project="Minesweeper" 
+  <class id="7" language="java" name="model.MineSweeperModel" project="Minesweeper" 
     file="/Minesweeper/src/model/MineSweeperModel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="569" width="496" x="569" y="739"/>    
+    <position height="569" width="496" x="545" y="356"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="9" language="java" name="model.MineSweeperModelInterface" project="Minesweeper" 
+  <interface id="8" language="java" name="model.MineSweeperModelInterface" project="Minesweeper" 
     file="/Minesweeper/src/model/MineSweeperModelInterface.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="315" width="239" x="582" y="1348"/>    
+    <position height="315" width="239" x="266" y="965"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="10" language="java" name="model.MineSweeperTile" project="Minesweeper" 
+  <class id="9" language="java" name="model.MineSweeperTile" project="Minesweeper" 
     file="/Minesweeper/src/model/MineSweeperTile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="333" width="185" x="861" y="1348"/>    
+    <position height="333" width="185" x="41" y="965"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="11" language="java" name="util.GameConstants" project="Minesweeper" 
+  <interface id="10" language="java" name="util.GameConstants" project="Minesweeper" 
     file="/Minesweeper/src/util/GameConstants.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="151" x="244" y="1348"/>    
+    <position height="99" width="151" x="1046" y="965"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="12" language="java" name="util.ViewConstants" project="Minesweeper" 
+  <interface id="11" language="java" name="util.ViewConstants" project="Minesweeper" 
     file="/Minesweeper/src/util/ViewConstants.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="222" x="41" y="739"/>    
+    <position height="225" width="222" x="1081" y="356"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <association id="13">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="14" name="tiles"/>      
-      <multiplicity id="15" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="16">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="17" name="gameProgressObserver"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+  <association id="12">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="13" name="model">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="19">    
-    <bendpoint x="314" y="739"/>    
+  <realization id="15">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="11"/>  
   </realization>  
-  <association id="20">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="21" name="flagsObserver"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+  <association id="16">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="17" name="tiles">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="18" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="23">    
-    <bendpoint x="641" y="356"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="24" name="model"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="27" name="view"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="29">    
-    <bendpoint x="1095" y="739"/>    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <realization id="30">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="12"/>  
-  </realization>  
-  <realization id="31">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <association id="32">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="33" name="model"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="36" name="controller"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+  <association id="19">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="20" name="boardObserver">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="39" name="boardObserver"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+  <realization id="22">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="23">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="24">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="25" name="gameProgressObserver">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="28" name="flagsObserver">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="41">    
-    <bendpoint x="379" y="739"/>    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <realization id="42">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="12"/>  
-  </realization>  
-  <realization id="43">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <realization id="44">    
-    <bendpoint x="293" y="739"/>    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

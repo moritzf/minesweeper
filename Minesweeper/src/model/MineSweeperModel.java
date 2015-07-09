@@ -1,12 +1,14 @@
 package model;
 
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.HashSet;
 import java.util.Random;
 
 import util.GameConstants;
 
 public class MineSweeperModel implements GameConstants,
-		MineSweeperModelInterface {
+MineSweeperModelInterface {
 
 	private MineSweeperTile[][] tiles;
 
@@ -54,10 +56,9 @@ public class MineSweeperModel implements GameConstants,
 
 		int numBombs = 0;
 		Random random = new Random();
-		HashSet<Integer> visitedX = new HashSet<>();
-		HashSet<Integer> visitedY = new HashSet<>();
+		HashSet<Point2D> visited = new HashSet<>();
 
-		// field equal to true hav bombs
+		// field equal to true has a bomb
 		boolean[][] bombDistribution = new boolean[NUM_TILES_PER_SIDE][NUM_TILES_PER_SIDE];
 
 		while (true) {
@@ -67,13 +68,12 @@ public class MineSweeperModel implements GameConstants,
 			int i = random.nextInt(NUM_TILES_PER_SIDE);
 			int j = random.nextInt(NUM_TILES_PER_SIDE);
 
-			if (!(visitedX.contains(new Integer(i)) && visitedY
-					.contains(new Integer(i)))) {
-				visitedX.add(new Integer(i));
-				visitedY.add(new Integer(j));
+			Point2D pt = new Point(i, j);
+			if (!visited.contains(pt)) {
+				visited.add(pt);
 				bombDistribution[i][j] = true;
 				numBombs++;
-
+				System.out.println(numBombs);
 			}
 		}
 		return bombDistribution;
@@ -172,8 +172,7 @@ public class MineSweeperModel implements GameConstants,
 	}
 
 	/* Helper method used to recursively uncover tiles. */
-	private void uncoverCurrentAndAdjacentTilesRecursively(int x, int y,
-			HashSet<Integer> visitedX, HashSet<Integer> visitedY) {
+	private void uncoverCurrentAndAdjacentTilesRecursively(int x, int y) {
 
 		if (!inBounds(x, y)
 				|| (tiles[x][y].hasBomb() || tiles[x][y].hasFlag() || !tiles[x][y]
@@ -181,17 +180,15 @@ public class MineSweeperModel implements GameConstants,
 			return;
 		}
 
-		visitedX.add(new Integer(x));
-		visitedY.add(new Integer(y));
 		tiles[x][y].setCovered(false);
 		decrementCoveredByOne();
 		if (getNumNeighboringBombs(x, y) > 0) {
 			return;
 		}
-		uncoverCurrentAndAdjacentTilesRecursively(x + 1, y, visitedX, visitedY);
-		uncoverCurrentAndAdjacentTilesRecursively(x - 1, y, visitedX, visitedY);
-		uncoverCurrentAndAdjacentTilesRecursively(x, y - 1, visitedX, visitedY);
-		uncoverCurrentAndAdjacentTilesRecursively(x, y + 1, visitedX, visitedY);
+		uncoverCurrentAndAdjacentTilesRecursively(x + 1, y);
+		uncoverCurrentAndAdjacentTilesRecursively(x - 1, y);
+		uncoverCurrentAndAdjacentTilesRecursively(x, y - 1);
+		uncoverCurrentAndAdjacentTilesRecursively(x, y + 1);
 	}
 
 	private void uncoverBombsAndWronglyMarkedFlags() {
@@ -221,9 +218,8 @@ public class MineSweeperModel implements GameConstants,
 				boardObserver.update();
 				return;
 			}
-			HashSet<Integer> visitedX = new HashSet<>();
-			HashSet<Integer> visitedY = new HashSet<>();
-			uncoverCurrentAndAdjacentTilesRecursively(x, y, visitedX, visitedY);
+
+			uncoverCurrentAndAdjacentTilesRecursively(x, y);
 			boardObserver.update();
 		}
 	}
